@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -37,6 +39,13 @@ class LoadingScreenState extends State<LoadingScreen> {
     );
     if (response.statusCode == 200) {
       print(response.body);
+      final data = jsonDecode(response.body);
+      String cityName = data['name'];
+      double temp = data['main']['temp'];
+      int condition = data['weather'][0]['id'];
+      print(cityName);
+      print(temp);
+      print(condition);
     } else {
       print(response.statusCode);
     }

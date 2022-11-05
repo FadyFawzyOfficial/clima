@@ -9,6 +9,17 @@ class LoadingScreen extends StatefulWidget {
 }
 
 class LoadingScreenState extends State<LoadingScreen> {
+  @override
+  void initState() {
+    super.initState();
+    getLocation();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold();
+  }
+
   void getLocation() async {
     try {
       //! You will have to explicitly ask the user for permission to use the Location Service.
@@ -24,19 +35,5 @@ class LoadingScreenState extends State<LoadingScreen> {
     } catch (e) {
       print(e);
     }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            getLocation();
-          },
-          child: const Text('Get Location'),
-        ),
-      ),
-    );
   }
 }

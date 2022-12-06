@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../services/weather.dart';
 import '../utilities/constants.dart';
+import 'city_screen.dart';
 
 class LocationScreen extends StatefulWidget {
   final dynamic locationWeather;
@@ -70,7 +71,14 @@ class LocationScreenState extends State<LocationScreen> {
                     ),
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => CityScreen(),
+                        ),
+                      );
+                    },
                     child: const Icon(
                       Icons.location_city,
                       size: 50.0,

@@ -1,12 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:clima/utilities/constants.dart';
+
+import '../utilities/constants.dart';
 
 class LocationScreen extends StatefulWidget {
+  final dynamic locationWeather;
+
+  const LocationScreen({super.key, required this.locationWeather});
+
   @override
-  _LocationScreenState createState() => _LocationScreenState();
+  LocationScreenState createState() => LocationScreenState();
 }
 
-class _LocationScreenState extends State<LocationScreen> {
+class LocationScreenState extends State<LocationScreen> {
+  late int temperature;
+  @override
+  void initState() {
+    super.initState();
+    print(widget.locationWeather);
+    updateUI(locationWeather: widget.locationWeather);
+  }
+
+  void updateUI({dynamic locationWeather}) {
+    double temp = locationWeather['main']['temp'];
+    temperature = temp.toInt();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +37,7 @@ class _LocationScreenState extends State<LocationScreen> {
                 Colors.white.withOpacity(0.8), BlendMode.dstATop),
           ),
         ),
-        constraints: BoxConstraints.expand(),
+        constraints: const BoxConstraints.expand(),
         child: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -30,14 +48,14 @@ class _LocationScreenState extends State<LocationScreen> {
                 children: <Widget>[
                   TextButton(
                     onPressed: () {},
-                    child: Icon(
+                    child: const Icon(
                       Icons.near_me,
                       size: 50.0,
                     ),
                   ),
                   TextButton(
                     onPressed: () {},
-                    child: Icon(
+                    child: const Icon(
                       Icons.location_city,
                       size: 50.0,
                     ),
@@ -45,21 +63,21 @@ class _LocationScreenState extends State<LocationScreen> {
                 ],
               ),
               Padding(
-                padding: EdgeInsets.only(left: 15.0),
+                padding: const EdgeInsets.only(left: 15.0),
                 child: Row(
-                  children: <Widget>[
+                  children: [
                     Text(
-                      '32°',
+                      '$temperature°',
                       style: kTempTextStyle,
                     ),
-                    Text(
+                    const Text(
                       '☀️',
                       style: kConditionTextStyle,
                     ),
                   ],
                 ),
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(right: 15.0),
                 child: Text(
                   "It's 🍦 time in San Francisco!",

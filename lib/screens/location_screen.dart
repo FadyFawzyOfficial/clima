@@ -71,13 +71,21 @@ class LocationScreenState extends State<LocationScreen> {
                     ),
                   ),
                   TextButton(
-                    onPressed: () {
-                      Navigator.push(
+                    onPressed: () async {
+                      String? enteredCityName = await Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => CityScreen(),
+                          builder: (_) => const CityScreen(),
                         ),
                       );
+                      if (enteredCityName != null &&
+                          enteredCityName.isNotEmpty) {
+                        updateUI(
+                          locationWeather: await weatherModel.getCityWeather(
+                            cityName: enteredCityName,
+                          ),
+                        );
+                      }
                     },
                     child: const Icon(
                       Icons.location_city,

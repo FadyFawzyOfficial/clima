@@ -41,6 +41,8 @@ dependencies:
   geolocator: ^9.0.2
   # A composable, multi-platform, Future-based API for HTTP requests.
   http: ^0.13.5
+  # A collection of loading indicators animated with flutter.
+  flutter_spinkit: ^5.1.0
 
 dev_dependencies:
   flutter_test:
